@@ -14,9 +14,24 @@ ref.set({
 	test: "hello world"
 });
 
+var queryParams = [
+	"index",
+	"name",
+	"temperature.gpu",
+	"clocks.current.video"
+];
+
+var formatParams = [
+	"csv",
+	"noheader"
+];
+
+var command = "nvidia-smi --query-gpu="
+	+ queryParams.join(",")
+	+ " --format=" + formatParams.join(",");
+
 setInterval(function() {
-
-	var cmd = shell.exec("nvidia-smi --query-gpu=index,name,temperature.gpu,clocks.current.video --format=csv,noheader");
-	ref.set(cmd);
-
+	shell.exec(command, function(code, stdout, stderr) {
+		ref.set(stdout);	
+	});
 }, 5000);

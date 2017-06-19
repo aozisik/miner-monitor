@@ -38,7 +38,7 @@ setInterval(function() {
 				return line.split(",");
 			});
 			ref.set({
-				timestamp: new Date(),
+				time: admin.database.ServerValue.TIMESTAMP,
 				gpus: lines
 			});
 		}

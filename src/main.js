@@ -16,7 +16,7 @@ ref.set({
 
 setInterval(function() {
 
-	var cmd = shell.exec("nvidia-smi --query-gpu=index,name,temperature.gpu,clocks.current.video --format=csv");
-	console.log(cmd);
+	var cmd = shell.exec("nvidia-smi --query-gpu=index,name,temperature.gpu,clocks.current.video --format=csv,noheader");
+	ref.set(cmd);
 
 }, 5000);

@@ -1,3 +1,4 @@
+var _ = require("lodash");
 var shell = require('shelljs');
 var admin = require("firebase-admin");
 var serviceAccount = require("../serviceAccount.json");
@@ -32,6 +33,14 @@ var command = "nvidia-smi --query-gpu="
 
 setInterval(function() {
 	shell.exec(command, function(code, stdout, stderr) {
-		ref.set(stdout);	
+		if(stdout) {
+			lines = _.map(stdout.split("\n"), function(line) {
+				return line.split(",");
+			});
+			ref.set({
+				timestamp: new Date(),
+				gpus: lines
+			});
+		}
 	});
 }, 5000);

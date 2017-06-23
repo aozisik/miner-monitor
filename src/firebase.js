@@ -17,11 +17,11 @@ function Firebase() {
         const path = [
             process.env.RIG_KEY,
             "logs",
-            gpuId,
             now.format("YYYY"),
             now.format("M"),
             now.format("D"),
-            now.format("H")
+            now.format("H"),
+            gpuId
         ];
         return db.ref(path.join("/"));
     };

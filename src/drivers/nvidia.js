@@ -13,28 +13,25 @@ const command = Shell("nvidia-smi")
 const formatOutput = function(output) {
     return _.chain(output.split("\n")).map(function(line) {
             // Normalize data
-            line = _.chain(line)
-                .split(",")
-                .map(function(cell) {
-                    return _.trim(cell);
-                })
-                .value();
+            const cells = _.map(line.split(","), function(cell) {
+                return _.trim(cell);
+            });
             // Convert to object
             return _.zipObject([
                 "id",
                 "name",
                 "temperature",
                 "clock"
-            ], line);
+            ], cells);
         })
         .filter(function(line) {
-            return line[0];
+            return 'id' in line;
         })
         .value();
 };
 
 module.exports = function() {
     return command.run().then((output) => {
-    	return formatOutput(output);
+        return formatOutput(output);
     });
 };

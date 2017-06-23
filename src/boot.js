@@ -1,6 +1,6 @@
 require("dotenv").config();
-const readGpu = require("./nvidia");
 const firebase = require("./firebase");
+const readGpu = require("./drivers/nvidia");
 
 setInterval(() => {
     readGpu()

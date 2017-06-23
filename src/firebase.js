@@ -23,7 +23,6 @@ function Firebase() {
             now.format("D"),
             now.format("H")
         ];
-        console.log(path.join("/"));
         return db.ref(path.join("/"));
     };
 
@@ -35,7 +34,15 @@ function Firebase() {
     };
 
     this.logTemperature = (gpuId, temperature) => {
+        temperature = parseInt(temperature);
         const ref = hourlyLogRef(gpuId);
+        ref.once("value", (data) => {
+            if(data.val() != null) {
+                // Get average using the previous value
+                temperature = Math.round(parseInt(data.val()) + temperature) / 2;
+            }
+            ref.set(temperature);
+        });
     };
 }
 

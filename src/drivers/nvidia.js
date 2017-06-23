@@ -12,11 +12,19 @@ const command = Shell("nvidia-smi")
 
 const formatOutput = function(output) {
     return _.chain(output.split("\n")).map(function(line) {
-            return _.chain(line)
+            // Normalize data
+            line = _.chain(line)
                 .split(",")
                 .map(function(cell) {
                     return _.trim(cell);
                 });
+            // Convert to object
+            return _.zipObject([
+                "id",
+                "name",
+                "temperature",
+                "clock"
+            ], line);
         })
         .filter(function(line) {
             return line[0];

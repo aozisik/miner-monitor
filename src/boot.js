@@ -2,17 +2,35 @@ require("dotenv").config();
 const firebase = require("./firebase");
 const readGpu = require("./drivers/nvidia");
 
-setInterval(() => {
+const updateFrequency = parseInt(process.env.UPDATE_FREQUENCY) * 1000;
+const logCycles = parseInt(process.env.LOG_FREQUENCY * 60 * 1000) / updateFrequency; 
+// Initialize logCycle
+let logCycle = logCycles;
 
-	firebase.logTemperature(1);
-	return;
-
+function mainLoop() {
     readGpu()
         .then((output) => {
-            firebase.updateStats(output);
-        })
-        .catch((error) => {
-            // Error reading the output
+        	updateLogs(output);
+            updateStats(output);
+        }).catch((error) => {
+            // Log error...
             console.error(error);
         });
-}, 5000);
+};
+
+function updateStats(output) {
+    firebase.updateStats(output);
+}
+
+function updateLogs(output) {
+	if (logCycle < logCycles) {
+		++logCycle;
+		return;
+	}
+	logCycle = 0;
+    _.each(output, (data) => {
+        firebase.logTemperature(data.id, data.temperature);
+    });	
+}
+
+setInterval(mainLoop, updateFrequency);

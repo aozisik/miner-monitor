@@ -2,6 +2,8 @@ const _ = require("lodash");
 const shell = require("shelljs");
 const Promise = require("bluebird");
 
+shell.config.silent = true;
+
 function Shell(command) {
 
     this.arg = (argument, value) => {

@@ -8,7 +8,7 @@ const command = Shell("nvidia-smi")
         "temperature.gpu",
         "fan.speed",
         "utilization.gpu",
-        "clocks.current.video"
+        "clocks.current.memory"
     ])
     .arg("format", ["csv", "noheader"]);
 

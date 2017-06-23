@@ -15,7 +15,7 @@ function mainLoop() {
             updateStats(output);
         }).catch((error) => {
             // Log error...
-            console.error(error);
+            console.error("Error occured: " + error);
         });
 };
 

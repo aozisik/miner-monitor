@@ -1,5 +1,5 @@
 const _ = require("lodash");
-const Shell = require("./shell");
+const Shell = require("../shell");
 
 const command = Shell("nvidia-smi")
     .arg("query-qpu", [

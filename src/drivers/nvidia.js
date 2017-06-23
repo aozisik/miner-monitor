@@ -3,9 +3,11 @@ const Shell = require("../shell");
 
 const command = Shell("nvidia-smi")
     .arg("query-gpu", [
-        "index",
+        "uuid",
         "name",
         "temperature.gpu",
+        "fan.speed",
+        "utilization.gpu",
         "clocks.current.video"
     ])
     .arg("format", ["csv", "noheader"]);
@@ -21,6 +23,8 @@ const formatOutput = function(output) {
                 "id",
                 "name",
                 "temperature",
+                "fan",
+                "load",
                 "clock"
             ], cells);
         })

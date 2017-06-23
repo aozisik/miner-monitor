@@ -1,4 +1,5 @@
 require("dotenv").config();
+const _ = require("lodash");
 const firebase = require("./firebase");
 const readGpu = require("./drivers/nvidia");
 

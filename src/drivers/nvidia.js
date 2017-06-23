@@ -17,7 +17,8 @@ const formatOutput = function(output) {
                 .split(",")
                 .map(function(cell) {
                     return _.trim(cell);
-                });
+                })
+                .value();
             // Convert to object
             return _.zipObject([
                 "id",
@@ -28,7 +29,8 @@ const formatOutput = function(output) {
         })
         .filter(function(line) {
             return line[0];
-        });
+        })
+        .value();
 };
 
 module.exports = function() {

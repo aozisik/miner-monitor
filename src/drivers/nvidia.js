@@ -2,7 +2,7 @@ const _ = require("lodash");
 const Shell = require("../shell");
 
 const command = Shell("nvidia-smi")
-    .arg("query-qpu", [
+    .arg("query-gpu", [
         "index",
         "name",
         "temperature.gpu",

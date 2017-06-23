@@ -41,7 +41,6 @@ function Firebase() {
                 // Get average using the previous value
                 temperature = Math.round((parseInt(data.val()) + temperature) / 2);
             }
-            conosle.log([gpuId, temperature]);
             ref.set(temperature);
         });
     };

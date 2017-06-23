@@ -25,7 +25,7 @@ const formatOutput = function(output) {
             ], cells);
         })
         .filter(function(line) {
-            return 'id' in line;
+            return 'id' in line && line.id;
         })
         .value();
 };

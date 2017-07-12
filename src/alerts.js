@@ -8,6 +8,7 @@ function loadAlert(name) {
 	alerts[name].checks = 0;
 }
 
+loadAlert('fan');
 loadAlert('idle');
 loadAlert('temperature');
 

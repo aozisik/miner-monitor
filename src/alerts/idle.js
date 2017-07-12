@@ -15,7 +15,7 @@ module.exports = {
 	// Send this message when the condition is met
 	handle: (bot) => {
 		return bot.send(_.shuffle([
-			'En az bir GPU %0 yükte. Sistem boş boş yatıyor sanki?',
+			'En az bir GPU boşta. Bi bakmak ister misiniz?',
 			'Beyler, biri el atsın en az bir kart boşta şu an.',
 		])[0]);
 	}

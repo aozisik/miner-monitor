@@ -1,6 +1,7 @@
 require('dotenv').config();
 const _ = require('lodash');
 const alerts = require('./alerts');
+const telegram = require('./telegram');
 const database = require('./database');
 const readGpu = require('./drivers/nvidia');
 

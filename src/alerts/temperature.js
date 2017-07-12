@@ -3,7 +3,7 @@ const temperatureLimit = 70;
 
 module.exports = {
 	// Send alert after 10 occurences
-	treshold: 10,
+	treshold: 8,
 	// Cooldown after alert in minutes
 	cooldown: 90,
 	// Check if this condition is met

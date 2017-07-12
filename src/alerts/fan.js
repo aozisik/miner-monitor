@@ -2,7 +2,7 @@ const _ = require('lodash');
 
 module.exports = {
 	// Send alert after 3 occurences
-	treshold: 3,
+	treshold: 1,
 	// Cooldown after alert in minutes
 	cooldown: 5,
 	// Check if this condition is met

@@ -1,5 +1,6 @@
 require('dotenv').config();
 const _ = require('lodash');
+const alerts = require('./alerts');
 const database = require('./database');
 const readGpu = require('./drivers/nvidia');
 
@@ -11,6 +12,7 @@ database.updateLogs = _.throttle(database.updateLogs, logFrequency);
 function mainLoop() {
     readGpu()
         .then((output) => {
+            alerts.ping(output);
             database.updateLogs(output);
             database.updateStats(output);
         }).catch((error) => {

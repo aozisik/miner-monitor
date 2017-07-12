@@ -14,6 +14,7 @@ function mainLoop() {
     readGpu()
         .then((output) => {
             alerts.ping(output);
+            telegram.inform(output);
             database.updateLogs(output);
             database.updateStats(output);
         }).catch((error) => {

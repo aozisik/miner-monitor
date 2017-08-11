@@ -16,6 +16,6 @@ module.exports = {
 	// Send this message when the condition is met
 	handle: (bot) => {
 		bot.send('Sizden hayır yok. Kendime res atıyorum');
-		Shell('sudo restart').run();
+		Shell('sudo reboot').run();
 	}
 }

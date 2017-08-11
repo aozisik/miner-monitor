@@ -11,6 +11,7 @@ function loadAlert(name) {
 loadAlert('fan');
 loadAlert('idle');
 loadAlert('temperature');
+loadAlert('idle-restart');
 
 module.exports = {
 	ping: (data) => {
